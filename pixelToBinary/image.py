@@ -86,7 +86,7 @@ class Bimage:
         vfunc = np.vectorize(lambda t: 0 if t < 127 else 1)
         binary = []
         for i in blackAndWhiteImage:
-            binary = np.concatenate((vfunc(i), binary))
+            binary = np.concatenate((binary, vfunc(i)))
         return binary
 
     def convertBinaryWithTolarance(self, tolarance=127):
@@ -114,7 +114,7 @@ class Bimage:
         vfunc = np.vectorize(lambda t: 0 if t < 127 else 1)
         binary = []
         for i in th:
-            binary = np.concatenate((vfunc(i), binary))
+            binary = np.concatenate((binary, vfunc(i)))
         return binary, th
 
     def convertBinaryGaussian(self, blockSize=101, C=2):
@@ -124,5 +124,5 @@ class Bimage:
         vfunc = np.vectorize(lambda t: 0 if t < 127 else 1)
         binary = []
         for i in th:
-            binary = np.concatenate((vfunc(i), binary))
+            binary = np.concatenate((binary, vfunc(i)))
         return binary, th
