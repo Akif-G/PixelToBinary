@@ -82,10 +82,9 @@ class Bimage:
 
     def convertBinary(self, tolarance=127):
         blackAndWhiteImage = self.__blackAndWhite()
-        vfunc = np.vectorize(lambda t: t < 127 if 0 else 1)
+
+        vfunc = np.vectorize(lambda t: 0 if t < 127 else 1)
         binary = []
-        ##
-        print(blackAndWhiteImage)
         for i in blackAndWhiteImage:
             binary = np.concatenate((vfunc(i), binary))
         return binary
@@ -112,9 +111,7 @@ class Bimage:
         grayImage = self.__convertCV2Gray()
         th = cv2.adaptiveThreshold(grayImage, 255, cv2.ADAPTIVE_THRESH_MEAN_C,
                                    cv2.THRESH_BINARY, blockSize, C)
-        vfunc = np.vectorize(lambda t: t < 127 if 0 else 1)
-        ##
-        print(th)
+        vfunc = np.vectorize(lambda t: 0 if t < 127 else 1)
         binary = []
         for i in th:
             binary = np.concatenate((vfunc(i), binary))
@@ -124,9 +121,7 @@ class Bimage:
         grayImage = self.__convertCV2Gray()
         th = cv2.adaptiveThreshold(grayImage, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
                                    cv2.THRESH_BINARY, blockSize, C)
-        vfunc = np.vectorize(lambda t: t < 127 if 0 else 1)
-        ##
-        print(th[0])
+        vfunc = np.vectorize(lambda t: 0 if t < 127 else 1)
         binary = []
         for i in th:
             binary = np.concatenate((vfunc(i), binary))
